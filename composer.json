@@ -1,0 +1,19 @@
+{
+    "name": "lichv/alisupplier",
+    "description": "Alibaba supplier pay sdk for PHP laravel",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "lichv lee",
+            "email": "lichvg@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "php": ">=5.5.9"
+    },
+    "autoload": {
+        "psr-4": {"Alisupplier\\": "src/"}
+    }
+}
