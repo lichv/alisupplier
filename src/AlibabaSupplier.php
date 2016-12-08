@@ -1323,7 +1323,7 @@ class AlibabaSupplier {
 	}
 
 	//获取单个产品信息
-	public function offerInfo(APIParam $param) {
+	public function offerInfo($id) {
 		$reqPolicy = new RequestPolicy();
 		$reqPolicy->httpMethod="POST";
 		$reqPolicy->needAuthorization=true;
@@ -1336,9 +1336,12 @@ class AlibabaSupplier {
 		$apiId = new APIId ("cn.alibaba.open", "offer.get", 1);
 		$request->apiId = $apiId;
 
+		$param = new \Alisupplier\Core\APIParam();
+		$param->setOfferId($id);
+		$param->setReturnFields('skuPics,isPrivateOffer,isPriceAuthOffer,isPicAuthOffer,offerId,isPrivate,detailsUrl,type,tradeType,postCategryId,offerStatus,memberId,subject,details,qualityLevel,imageList,productFeatureList,isOfferSupportOnlineTrade,tradingType,isSupportMix,unit,priceUnit,amount,amountOnSale,saledCount,retailPrice,unitPrice,priceRanges,termOfferProcess,freightTemplateId,sendGoodsId,productUnitWeight,freightType,isSkuOffer,isSkuTradeSupported,skuArray,gmtCreate,gmtModified,gmtLastRepost,gmtApproved,gmtExpire');
 		$request->requestEntity=$param;
 		$res = $this->run($reqPolicy,$request);
-				if($res['state']==200){
+		if($res['state']==200){
 			$result = $res['data']['result'];
 			$result['state']=200;
 		}else{
